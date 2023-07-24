@@ -12,7 +12,7 @@ function() {
   var filters = document.getElementById("filters");
   var gen = "";
   for (let i = 0; i < geners.length; i++) {
-    gen += `<input type="radio" class="radio-gen" id=${geners[i]} value=${i+1} name="generation" checked>
+    gen += `<input type="radio" class="radio-gens" id=${geners[i]} value=${i+1} name="generation" checked>
     <label for = ${geners[i]}  class="label-gens">${geners[i]}</label>`;
   }
   filters.innerHTML = gen;
