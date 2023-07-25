@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', 
 function() {
-
   const fetchPokemon = async (endpoint) => {
     let data;
     try {
@@ -29,10 +28,40 @@ function() {
   container.innerHTML = "";
   let pokemons = [];
   pokemons = await fetchPokemon(endpoint);
-  for (let i = 0; i < pokemons.length; i++) {
-
+  for (let j = 0; j < pokemons.length; j++) {
+    pokemons[j].nr = orderNumber(pokemons[j].url);
   }
-  // console.log(pokemons);
+  pokemons.sort((a, b) => a.nr - b.nr);
+  pokemons.forEach((item) => {
+
+    let numero3decimales = ordernumber(item.url)
+    if (numero3decimales < 10) {
+      numero3decimales = "00" + numero3decimales;
+    }else if (numero3decimales < 100) {
+      numero3decimales = "0" + numero3decimales;
+    } else {
+      numero3decimales = numero3decimales;
+    }
+
+    let divItem = document.createElement("li");
+    divItem.classList.add("item");
+    var img = new Image();
+    const toggleurl = toggle 
+      ? "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" 
+      : "https://serebii.net/pokemongo/pokemon/";
+    img.src = "https://www.gifsanimados.org/data/media/298/comida-y-bebida-imagen-animada-0018.gif"
+    const urlImage = `${toggleurl}${numero3decimales}.png`;
+    img.setAttribute("data-img", urlImage);
+    img.setAttribute("class", pokeimage);
+    img.setAttribute("alt", item.name);
+
+    img.src = `${toggleurl}${numero3decimales}.png`;  
+    divItem.innerHTML = `<div>${orderNumber(item.url)}-${item.name}</div>`;
+    divItem.appendChild(img);
+    container.appendChild(divItem);
+  });
+
+  console.log(pokemons);
  };
   getPokemon(1);
   var geners = [
